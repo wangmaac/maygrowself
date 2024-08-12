@@ -10,7 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:maygrowself/1.pages/login_page.dart';
 
 import 'package:maygrowself/main.dart';
-import 'package:maygrowself/pages/my_home_page.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

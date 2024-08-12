@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:maygrowself/1.pages/login_page.dart';
+import 'package:maygrowself/1.pages/main_page.dart';
+import 'package:maygrowself/1.pages/password_reset_page.dart';
 import 'package:maygrowself/1.pages/sign_up_page.dart';
+import 'package:maygrowself/1.pages/terms/personal_terms.dart';
+import 'package:maygrowself/1.pages/terms/use_terms.dart';
 import 'package:maygrowself/99.routers/router_util.dart';
 import 'package:maygrowself/nav_observer.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -8,10 +12,8 @@ import 'package:go_router/go_router.dart';
 
 part 'app_router.g.dart';
 
-final GlobalKey<NavigatorState> rootNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'root');
-final GlobalKey<NavigatorState> shellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'shell');
+final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+final GlobalKey<NavigatorState> shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 @Riverpod(keepAlive: true)
 GoRouter goRouter(GoRouterRef ref) {
@@ -42,8 +44,8 @@ GoRouter goRouter(GoRouterRef ref) {
         },
       ),
       GoRoute(
-        path: AppPath.signup.toPath,
-        name: AppPath.signup.toName,
+        path: AppPath.main.toPath,
+        name: AppPath.main.toName,
         pageBuilder: (context, state) {
           return MaterialPage(
             key: state.pageKey,
@@ -51,20 +53,86 @@ GoRouter goRouter(GoRouterRef ref) {
               builder: (context) {
                 return MediaQuery(
                   data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.1)),
-                  child: const SignUpPage(),
+                  child: const MainPage(),
                 );
               },
             ),
           );
         },
       ),
+      GoRoute(
+        path: AppPath.passwordReset.toPath,
+        name: AppPath.passwordReset.toName,
+        pageBuilder: (context, state) {
+          return MaterialPage(
+            key: state.pageKey,
+            child: Builder(
+              builder: (context) {
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.1)),
+                  child: const PasswordResetPage(),
+                );
+              },
+            ),
+          );
+        },
+      ),
+      GoRoute(
+          path: AppPath.signup.toPath,
+          name: AppPath.signup.toName,
+          pageBuilder: (context, state) {
+            return MaterialPage(
+              key: state.pageKey,
+              child: Builder(
+                builder: (context) {
+                  return MediaQuery(
+                    data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.1)),
+                    child: const SignUpPage(),
+                  );
+                },
+              ),
+            );
+          },
+          routes: [
+            GoRoute(
+                path: AppPath.useTerm.toName,
+                name: AppPath.useTerm.toName,
+                pageBuilder: (context, state) {
+                  return MaterialPage(
+                    key: state.pageKey,
+                    child: Builder(
+                      builder: (context) {
+                        return MediaQuery(
+                          data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.1)),
+                          child: const UseTermsPage(),
+                        );
+                      },
+                    ),
+                  );
+                }),
+            GoRoute(
+                path: AppPath.personalTerm.toName,
+                name: AppPath.personalTerm.toName,
+                pageBuilder: (context, state) {
+                  return MaterialPage(
+                    key: state.pageKey,
+                    child: Builder(
+                      builder: (context) {
+                        return MediaQuery(
+                          data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.1)),
+                          child: const PersonalTermPage(),
+                        );
+                      },
+                    ),
+                  );
+                }),
+          ]),
     ],
     errorPageBuilder: (_, state) {
       return MaterialPage(
           key: state.pageKey,
           child: const Center(
-              child: Text(
-                  'ERROR')) /* CustomErrorScreen(
+              child: Text('Router Error Page')) /* CustomErrorScreen(
             error: state.error,
           ),*/
           );

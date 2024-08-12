@@ -8,6 +8,7 @@ class CommonWidget {
       {required String titleString, required Widget contentColumn, required Widget bottomButton}) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,9 +54,11 @@ class CommonWidget {
     );
   }
 
-  static Widget buildTextFormFiledWithValidation({required TextEditingController controller, required String hintText}) {
+  static Widget buildTextFormFiledWithValidation({required TextEditingController controller, required String hintText, required String valTitle, required Function() validator, required Function(String) onChangedValidator}) {
     return TextFormField(
       controller: controller,
+      autovalidateMode: AutovalidateMode.disabled,
+      onChanged: onChangedValidator,
       decoration: InputDecoration(
         hintText: hintText,
         suffixIcon: SizedBox(
@@ -63,14 +66,14 @@ class CommonWidget {
           child: Padding(
             padding: const EdgeInsets.all(9.0),
             child: GestureDetector(
-              onTap: ()=> print('중복'),
+              onTap: ()=> validator(),
               child: Container(
                 width: 72.w,
                 height: 10.h,
                 alignment: Alignment.center,
                 padding: EdgeInsets.zero,
                 decoration: BoxDecoration(color: AppColors.button333333, borderRadius: BorderRadius.circular(26.0)),
-                child: Text('중복', style: AppTextStyle.b14.get),
+                child: Text(valTitle, style: AppTextStyle.b14.get),
               ),
             ),
           ),

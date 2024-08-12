@@ -19,4 +19,14 @@ class F {
     }
   }
 
+  static String get endPoint {
+    switch (appFlavor) {
+      case Flavor.dev:
+        return 'http://15.165.249.34:8602/v1';
+      case Flavor.prod:
+        return 'http://15.165.249.34:8602/v1';
+      default:
+        return 'http://15.165.249.34:8602/v1';
+    }
+  }
 }

@@ -29,12 +29,14 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: CommonWidget.buildLoginFrame(
-        context,
-        titleString: '로그인',
-        contentColumn: buildContentColumn(),
-        bottomButton: buildBottomButton(),
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: CommonWidget.buildLoginFrame(
+          context,
+          titleString: '로그인',
+          contentColumn: buildContentColumn(),
+          bottomButton: buildBottomButton(),
+        ),
       ),
     );
   }
@@ -63,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
                   splashFactory: NoSplash.splashFactory,
                 ),
-                onPressed: () {},
+                onPressed: () => context.push(AppPath.passwordReset.toPath),
                 child: Text(
                   '비밀번호 재설정',
                   style: AppTextStyle.b14.get.copyWith(color: AppColors.textE5E5E5),
