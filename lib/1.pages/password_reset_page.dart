@@ -59,14 +59,6 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
   Column buildContentColumn() {
     return Column(
       children: [
-        // CommonWidget.buildTextFormFiledWithValidation(
-        //     controller: _emailController, hintText: '이메일', valTitle: '보내기', validator: () => print('send email')),
-        // CommonWidget.buildErrorStringWidget(errorString: _emailErrorString),
-        // CommonWidget.buildTextFormFiledWithValidation(
-        //     controller: _certificationNumberController,
-        //     hintText: '인증번호',
-        //     valTitle: '확인',
-        //     validator: () => print('certification number validation')),
         CommonWidget.buildErrorStringWidget(errorString: _certificationNumberErrorString),
         CommonWidget.buildTextFormFiled(controller: _passwordController, hintText: '비밀번호'),
         CommonWidget.buildErrorStringWidget(errorString: _passwordErrorString),

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:maygrowself/5.models/response_entity.dart';
 import 'package:maygrowself/flavors.dart';
 import 'package:maygrowself/utils/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -10,6 +11,9 @@ Dio getDio(GetDioRef ref) {
   final dio = Dio();
   final options = BaseOptions(
     baseUrl: F.endPoint,
+    headers: {
+      'Content-Type': 'application/json',
+    },
     connectTimeout: Duration(seconds: 10),
     receiveTimeout: Duration(seconds: 10),
   );
@@ -24,18 +28,29 @@ Dio getDio(GetDioRef ref) {
       onResponse: (Response response, ResponseInterceptorHandler handler) {
         if (response.data!['code'] == 200) {
           return handler.next(response);
-        } else {
-          final newError = DioException(
-            requestOptions: response.requestOptions,
-            response: response,
-            message: response.data!['message'],
-            error: response.data!['code'],
-          );
-          // interceptor onError로 전달
-          return handler.reject(newError, true);
         }
+        // else {
+          // final newError = DioException(
+          //   requestOptions: response.requestOptions,
+          //   response: response,
+          //   message: response.data!['message'],
+          //   error: response.data!['code'],
+          // );
+          // interceptor onError로 전달
+          // return handler.reject(newError, true);
+        // }
       },
       onError: (DioException err, handler) async {
+        if(err.response != null){
+          ResponseEntity exceptionEntity = ResponseEntity.fromJson(err.response!.data, (json) => json);
+          err.response!.data = exceptionEntity;
+          return handler.reject(err);
+        }else{
+          ResponseEntity exceptionEntity = ResponseEntity(code: 777, message: '이건 진짜 정의되지 않은 오류입니다.', data: {}, timestamp: DateTime.now());
+          err.response!.data = exceptionEntity;
+          return handler.reject(err);
+        }
+
         //err.error == '401001';
 
         // if (statusCode == 401 && refreshToken != null) {

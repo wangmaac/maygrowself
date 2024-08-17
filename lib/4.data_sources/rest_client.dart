@@ -14,5 +14,5 @@ abstract class RestClient{
   Future<ResponseEntity<EmailDuplicationModel>> getEmailDuplication(@Query('email') String email);
 
   @POST('/sign-up')
-  Future<ResponseEntity<String>> signUp(@Body() SignUpRequest body);
+  Future<ResponseEntity> signUp(@Body() SignUpRequest body);
 }

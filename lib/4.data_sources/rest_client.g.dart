@@ -50,13 +50,13 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<ResponseEntity<String>> signUp(SignUpRequest body) async {
+  Future<ResponseEntity<dynamic>> signUp(SignUpRequest body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = body;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ResponseEntity<String>>(Options(
+        _setStreamType<ResponseEntity<dynamic>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -72,9 +72,9 @@ class _RestClient implements RestClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final _value = ResponseEntity<String>.fromJson(
+    final _value = ResponseEntity<dynamic>.fromJson(
       _result.data!,
-      (json) => json as String,
+      (json) => json as dynamic,
     );
     return _value;
   }
