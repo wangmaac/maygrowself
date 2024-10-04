@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'email_signup_provider.future.dart';
+part of 'email_login_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signUpHash() => r'd50df11fa51ac6ac3b3c6bb48a32495008d159bb';
+String _$loginTokenRepoHash() => r'9c487c7d363bb775590e65c95a3e43f581d55606';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,27 +29,28 @@ class _SystemHash {
   }
 }
 
-/// See also [signUp].
-@ProviderFor(signUp)
-const signUpProvider = SignUpFamily();
+/// See also [loginTokenRepo].
+@ProviderFor(loginTokenRepo)
+const loginTokenRepoProvider = LoginTokenRepoFamily();
 
-/// See also [signUp].
-class SignUpFamily extends Family<AsyncValue<bool>> {
-  /// See also [signUp].
-  const SignUpFamily();
+/// See also [loginTokenRepo].
+class LoginTokenRepoFamily
+    extends Family<AsyncValue<ResponseEntity<TokenResponseModel>>> {
+  /// See also [loginTokenRepo].
+  const LoginTokenRepoFamily();
 
-  /// See also [signUp].
-  SignUpProvider call(
+  /// See also [loginTokenRepo].
+  LoginTokenRepoProvider call(
     SignUpRequest request,
   ) {
-    return SignUpProvider(
+    return LoginTokenRepoProvider(
       request,
     );
   }
 
   @override
-  SignUpProvider getProviderOverride(
-    covariant SignUpProvider provider,
+  LoginTokenRepoProvider getProviderOverride(
+    covariant LoginTokenRepoProvider provider,
   ) {
     return call(
       provider.request,
@@ -68,31 +69,33 @@ class SignUpFamily extends Family<AsyncValue<bool>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'signUpProvider';
+  String? get name => r'loginTokenRepoProvider';
 }
 
-/// See also [signUp].
-class SignUpProvider extends AutoDisposeFutureProvider<bool> {
-  /// See also [signUp].
-  SignUpProvider(
+/// See also [loginTokenRepo].
+class LoginTokenRepoProvider
+    extends AutoDisposeFutureProvider<ResponseEntity<TokenResponseModel>> {
+  /// See also [loginTokenRepo].
+  LoginTokenRepoProvider(
     SignUpRequest request,
   ) : this._internal(
-          (ref) => signUp(
-            ref as SignUpRef,
+          (ref) => loginTokenRepo(
+            ref as LoginTokenRepoRef,
             request,
           ),
-          from: signUpProvider,
-          name: r'signUpProvider',
+          from: loginTokenRepoProvider,
+          name: r'loginTokenRepoProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$signUpHash,
-          dependencies: SignUpFamily._dependencies,
-          allTransitiveDependencies: SignUpFamily._allTransitiveDependencies,
+                  : _$loginTokenRepoHash,
+          dependencies: LoginTokenRepoFamily._dependencies,
+          allTransitiveDependencies:
+              LoginTokenRepoFamily._allTransitiveDependencies,
           request: request,
         );
 
-  SignUpProvider._internal(
+  LoginTokenRepoProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -106,12 +109,14 @@ class SignUpProvider extends AutoDisposeFutureProvider<bool> {
 
   @override
   Override overrideWith(
-    FutureOr<bool> Function(SignUpRef provider) create,
+    FutureOr<ResponseEntity<TokenResponseModel>> Function(
+            LoginTokenRepoRef provider)
+        create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: SignUpProvider._internal(
-        (ref) => create(ref as SignUpRef),
+      override: LoginTokenRepoProvider._internal(
+        (ref) => create(ref as LoginTokenRepoRef),
         from: from,
         name: null,
         dependencies: null,
@@ -123,13 +128,14 @@ class SignUpProvider extends AutoDisposeFutureProvider<bool> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<bool> createElement() {
-    return _SignUpProviderElement(this);
+  AutoDisposeFutureProviderElement<ResponseEntity<TokenResponseModel>>
+      createElement() {
+    return _LoginTokenRepoProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SignUpProvider && other.request == request;
+    return other is LoginTokenRepoProvider && other.request == request;
   }
 
   @override
@@ -141,17 +147,19 @@ class SignUpProvider extends AutoDisposeFutureProvider<bool> {
   }
 }
 
-mixin SignUpRef on AutoDisposeFutureProviderRef<bool> {
+mixin LoginTokenRepoRef
+    on AutoDisposeFutureProviderRef<ResponseEntity<TokenResponseModel>> {
   /// The parameter `request` of this provider.
   SignUpRequest get request;
 }
 
-class _SignUpProviderElement extends AutoDisposeFutureProviderElement<bool>
-    with SignUpRef {
-  _SignUpProviderElement(super.provider);
+class _LoginTokenRepoProviderElement
+    extends AutoDisposeFutureProviderElement<ResponseEntity<TokenResponseModel>>
+    with LoginTokenRepoRef {
+  _LoginTokenRepoProviderElement(super.provider);
 
   @override
-  SignUpRequest get request => (origin as SignUpProvider).request;
+  SignUpRequest get request => (origin as LoginTokenRepoProvider).request;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

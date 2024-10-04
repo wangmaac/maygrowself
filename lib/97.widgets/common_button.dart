@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:maygrowself/1.pages/sign_up_page.dart';
+import 'package:maygrowself/5.models/button_inner_model.dart';
 import 'package:maygrowself/98.resources/app_colors.dart';
 import 'package:maygrowself/98.resources/app_text_style.dart';
 
@@ -49,7 +49,7 @@ class CommonButtonWidget<T> extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 70.h,
+        height: 65.h,
         width: isFullWidth ? double.infinity : 338.w,
         decoration: BoxDecoration(color: backgroundColor),
         child: Center(

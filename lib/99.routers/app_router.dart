@@ -5,6 +5,8 @@ import 'package:maygrowself/1.pages/password_reset_page.dart';
 import 'package:maygrowself/1.pages/sign_up_page.dart';
 import 'package:maygrowself/1.pages/terms/personal_terms.dart';
 import 'package:maygrowself/1.pages/terms/use_terms.dart';
+import 'package:maygrowself/2.providers/app_status_provider.dart';
+import 'package:maygrowself/97.widgets/common_widget.dart';
 import 'package:maygrowself/99.routers/router_util.dart';
 import 'package:maygrowself/nav_observer.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -17,6 +19,20 @@ final GlobalKey<NavigatorState> shellNavigatorKey = GlobalKey<NavigatorState>(de
 
 @Riverpod(keepAlive: true)
 GoRouter goRouter(GoRouterRef ref) {
+  ref.listen(
+    appStatusProvider,
+    (previous, next) {
+      if(rootNavigatorKey.currentContext == null){
+        return;
+      }
+      final context = rootNavigatorKey.currentContext!;
+      if (next.value?.loggedInUser == null) {
+        CommonWidget.showToast('로그아웃 되었습니다.');
+      }
+      GoRouter.maybeOf(context)?.refresh();
+    },
+  );
+
   return GoRouter(
     navigatorKey: rootNavigatorKey,
     observers: <NavigatorObserver>[
@@ -138,6 +154,22 @@ GoRouter goRouter(GoRouterRef ref) {
           );
     },
     redirect: (BuildContext context, GoRouterState goState) async {
+      final appStatus = ref.read(appStatusProvider);
+      // if(appStatus.loggedInUser != null){
+      //   return AppPath.main.toPath;
+      // }
+
+      if (appStatus.value?.loggedInUser == null) {
+        if(goState.fullPath!.contains(AppPath.signup.toName)){
+          return null;
+        }
+        if(goState.fullPath!.contains(AppPath.passwordReset.toName)){
+          return null;
+        }
+
+        return AppPath.login.toPath;
+      }
+
       // final auth = await ref.read(authUserProvider.future);
 
 /*

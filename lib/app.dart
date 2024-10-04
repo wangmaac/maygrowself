@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maygrowself/2.providers/app_status_provider.dart';
 import 'package:maygrowself/98.resources/app_text_style.dart';
 import 'package:maygrowself/99.routers/app_router.dart';
 
@@ -14,6 +15,8 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final rt = ref.read(goRouterProvider);
+    final appState = ref.watch(appStatusProvider);
+    appState.whenData((data)=> print('data!!!!!!!!!!${data.toString()}!!!!!!!!!!!!!!!!!!!!!!!!'));
     return MaterialApp.router(
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData(

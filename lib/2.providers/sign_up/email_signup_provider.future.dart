@@ -1,5 +1,4 @@
 import 'package:maygrowself/3.repositories/sign_up/email_sign_up_repository.dart';
-import 'package:maygrowself/5.models/response_entity.dart';
 import 'package:maygrowself/5.models/sign_up_request.dart';
 import 'package:maygrowself/utils/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

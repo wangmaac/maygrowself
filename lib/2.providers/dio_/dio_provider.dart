@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:maygrowself/2.providers/secure_storage.dart';
 import 'package:maygrowself/5.models/response_entity.dart';
 import 'package:maygrowself/flavors.dart';
+import 'package:maygrowself/utils/constants.dart';
 import 'package:maygrowself/utils/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -22,7 +24,12 @@ Dio getDio(GetDioRef ref) {
   //                  -> 실패 -> onError -> 토큰 재발급 -> 다시 시작 -> onRequest -> 성공 -> onResponse -> .g serialize -> model return
   dio.interceptors.add(
     QueuedInterceptorsWrapper(
-      onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
+      onRequest: (RequestOptions options, RequestInterceptorHandler handler) async{
+        String? storedToken = await ref.read(secureStorageProvider).read(key: ACCESS_TOKEN_KEY);
+        logger.w('storedToken: ${storedToken ?? 'null'}');
+        if(storedToken != null) {
+          options.headers['Authorization'] = 'Bearer $storedToken';
+        }
         return handler.next(options);
       },
       onResponse: (Response response, ResponseInterceptorHandler handler) {
@@ -36,13 +43,17 @@ Dio getDio(GetDioRef ref) {
           //   message: response.data!['message'],
           //   error: response.data!['code'],
           // );
-          // interceptor onError로 전달
+          // // interceptor onError로 전달
           // return handler.reject(newError, true);
         // }
       },
       onError: (DioException err, handler) async {
+        print(err.toString());
+        print(err.response!.statusCode);
+        print(err.response!.data['code'].toString());
         if(err.response != null){
           ResponseEntity exceptionEntity = ResponseEntity.fromJson(err.response!.data, (json) => json);
+          print(exceptionEntity.code);
           err.response!.data = exceptionEntity;
           return handler.reject(err);
         }else{

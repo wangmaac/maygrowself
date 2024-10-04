@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'email_signup_provider.future.dart';
+part of 'token.future.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signUpHash() => r'd50df11fa51ac6ac3b3c6bb48a32495008d159bb';
+String _$tokenHash() => r'725f1903062a95a1693a23b76cab754ff08882e7';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,27 +29,27 @@ class _SystemHash {
   }
 }
 
-/// See also [signUp].
-@ProviderFor(signUp)
-const signUpProvider = SignUpFamily();
+/// See also [token].
+@ProviderFor(token)
+const tokenProvider = TokenFamily();
 
-/// See also [signUp].
-class SignUpFamily extends Family<AsyncValue<bool>> {
-  /// See also [signUp].
-  const SignUpFamily();
+/// See also [token].
+class TokenFamily extends Family<AsyncValue<void>> {
+  /// See also [token].
+  const TokenFamily();
 
-  /// See also [signUp].
-  SignUpProvider call(
+  /// See also [token].
+  TokenProvider call(
     SignUpRequest request,
   ) {
-    return SignUpProvider(
+    return TokenProvider(
       request,
     );
   }
 
   @override
-  SignUpProvider getProviderOverride(
-    covariant SignUpProvider provider,
+  TokenProvider getProviderOverride(
+    covariant TokenProvider provider,
   ) {
     return call(
       provider.request,
@@ -68,31 +68,31 @@ class SignUpFamily extends Family<AsyncValue<bool>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'signUpProvider';
+  String? get name => r'tokenProvider';
 }
 
-/// See also [signUp].
-class SignUpProvider extends AutoDisposeFutureProvider<bool> {
-  /// See also [signUp].
-  SignUpProvider(
+/// See also [token].
+class TokenProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [token].
+  TokenProvider(
     SignUpRequest request,
   ) : this._internal(
-          (ref) => signUp(
-            ref as SignUpRef,
+          (ref) => token(
+            ref as TokenRef,
             request,
           ),
-          from: signUpProvider,
-          name: r'signUpProvider',
+          from: tokenProvider,
+          name: r'tokenProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$signUpHash,
-          dependencies: SignUpFamily._dependencies,
-          allTransitiveDependencies: SignUpFamily._allTransitiveDependencies,
+                  : _$tokenHash,
+          dependencies: TokenFamily._dependencies,
+          allTransitiveDependencies: TokenFamily._allTransitiveDependencies,
           request: request,
         );
 
-  SignUpProvider._internal(
+  TokenProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -106,12 +106,12 @@ class SignUpProvider extends AutoDisposeFutureProvider<bool> {
 
   @override
   Override overrideWith(
-    FutureOr<bool> Function(SignUpRef provider) create,
+    FutureOr<void> Function(TokenRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: SignUpProvider._internal(
-        (ref) => create(ref as SignUpRef),
+      override: TokenProvider._internal(
+        (ref) => create(ref as TokenRef),
         from: from,
         name: null,
         dependencies: null,
@@ -123,13 +123,13 @@ class SignUpProvider extends AutoDisposeFutureProvider<bool> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<bool> createElement() {
-    return _SignUpProviderElement(this);
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _TokenProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SignUpProvider && other.request == request;
+    return other is TokenProvider && other.request == request;
   }
 
   @override
@@ -141,17 +141,17 @@ class SignUpProvider extends AutoDisposeFutureProvider<bool> {
   }
 }
 
-mixin SignUpRef on AutoDisposeFutureProviderRef<bool> {
+mixin TokenRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `request` of this provider.
   SignUpRequest get request;
 }
 
-class _SignUpProviderElement extends AutoDisposeFutureProviderElement<bool>
-    with SignUpRef {
-  _SignUpProviderElement(super.provider);
+class _TokenProviderElement extends AutoDisposeFutureProviderElement<void>
+    with TokenRef {
+  _TokenProviderElement(super.provider);
 
   @override
-  SignUpRequest get request => (origin as SignUpProvider).request;
+  SignUpRequest get request => (origin as TokenProvider).request;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
