@@ -2,11 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maygrowself/2.providers/sign_up/email_signup_provider.future.dart';
-import 'package:maygrowself/2.providers/sign_up/email_valid_provider.dart';
+import 'package:maygrowself/2.providers/sign_up/sign_up_page_provider.dart';
+import 'package:maygrowself/5.models/button_inner_model.dart';
 import 'package:maygrowself/5.models/response_entity.dart';
 import 'package:maygrowself/5.models/sign_up_request.dart';
 import 'package:maygrowself/97.widgets/common_button.dart';
@@ -196,9 +196,4 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
   }
 }
 
-class InnerButtonModel {
-  final String title;
-  final VoidCallback onPressed;
 
-  InnerButtonModel({required this.title, required this.onPressed});
-}

@@ -5,7 +5,7 @@ import 'package:maygrowself/utils/logger.dart';
 import 'package:maygrowself/utils/reg_rep_util.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'email_valid_provider.g.dart';
+part 'sign_up_page_provider.g.dart';
 
 enum CheckBoxType {
   useTerm('이용약관 동의'),
@@ -50,7 +50,7 @@ class SignUpValidation extends _$SignUpValidation {
 
   @override
   List<String?> build() {
-    return List.generate(3, (index) => null);
+    return List.generate(3, (_) => null);
   }
 
   void checkEmailRegExp(String email) {

@@ -32,7 +32,7 @@ class CommonWidget {
   static void showToast(String message){
     Fluttertoast.showToast(
         msg: message,
-        toastLength: Toast.LENGTH_SHORT,
+        toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: AppColors.primary66D0C5,
@@ -44,7 +44,7 @@ class CommonWidget {
   static Widget buildButton(
       {required String text, required Color textColor, required Function onPressed, required Color backgroundColor, bool isFullWidth = false}) {
     return Container(
-      height: 70.h,
+      height: 65.h,
       width: isFullWidth ? double.infinity : 338.w,
       decoration: BoxDecoration(color: backgroundColor),
       child: Center(
@@ -67,6 +67,20 @@ class CommonWidget {
       ),
     );
   }
+
+  static Widget buildDefaultTextFormFiled({required TextEditingController controller, required String hintText, required Function(String) onChangedValidator}) {
+    return TextFormField(
+      controller: controller,
+      autovalidateMode: AutovalidateMode.disabled,
+      onChanged: onChangedValidator,
+      decoration: InputDecoration(
+        hintText: hintText,
+        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+      ),
+    );
+  }
+
 
   static Widget buildPasswordTextFormFiled({required TextEditingController controller, required String hintText, required Function(String) onChangedValidator}) {
     return TextFormField(

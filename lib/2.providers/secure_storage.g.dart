@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'email_valid_provider.dart';
+part of 'secure_storage.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signUpValidationHash() => r'4b04737292985261cbab69e2768daac60935f467';
+String _$secureStorageHash() => r'6c445c8367485206f42e1a7d985a619f1cd0ef6d';
 
-/// See also [SignUpValidation].
-@ProviderFor(SignUpValidation)
-final signUpValidationProvider =
-    AutoDisposeNotifierProvider<SignUpValidation, List<String?>>.internal(
-  SignUpValidation.new,
-  name: r'signUpValidationProvider',
+/// See also [secureStorage].
+@ProviderFor(secureStorage)
+final secureStorageProvider =
+    AutoDisposeProvider<FlutterSecureStorage>.internal(
+  secureStorage,
+  name: r'secureStorageProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$signUpValidationHash,
+      : _$secureStorageHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SignUpValidation = AutoDisposeNotifier<List<String?>>;
+typedef SecureStorageRef = AutoDisposeProviderRef<FlutterSecureStorage>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
