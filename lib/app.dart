@@ -15,8 +15,6 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final rt = ref.read(goRouterProvider);
-    final appState = ref.watch(appStatusProvider);
-    appState.whenData((data)=> print('data!!!!!!!!!!${data.toString()}!!!!!!!!!!!!!!!!!!!!!!!!'));
     return MaterialApp.router(
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData(

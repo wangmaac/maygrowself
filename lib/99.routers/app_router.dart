@@ -26,9 +26,6 @@ GoRouter goRouter(GoRouterRef ref) {
         return;
       }
       final context = rootNavigatorKey.currentContext!;
-      if (next.value?.loggedInUser == null) {
-        CommonWidget.showToast('로그아웃 되었습니다.');
-      }
       GoRouter.maybeOf(context)?.refresh();
     },
   );

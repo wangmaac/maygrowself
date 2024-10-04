@@ -30,7 +30,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   void initState() {
     super.initState();
-    // tryLoginWithStoredToken();
+    tryLoginWithStoredToken();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _innerButtonModel = InnerButtonModel(
@@ -43,15 +43,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               print('user.whenComplete${ref.read(appStatusProvider).value.toString()}');
               GoRouter.of(context).go(AppPath.main.toPath);
             });
-            // user.whenData((value) {
-            //   GoRouter.of(context).go(AppPath.main.toPath);
-            // });
-            //token저장
-            // final token = await ref.read(loginTokenProvider(request).future);
-            // //user info loaded
-            // final user = await ref.read(getMyInfoProvider.future);
-            // print(user.toJson());
-            // GoRouter.of(context).go(AppPath.main.toPath);
           } catch (e) {
             if (e is DioException) {
               //서버 통신 에러
@@ -60,7 +51,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 CommonWidget.showToast(responseEntity.message);
               }
             } else {
-              //개발 에러
               CommonWidget.showToast('운영자에게 연락바랍니다.');
             }
           }
@@ -136,13 +126,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   }
 
   Future<void> tryLoginWithStoredToken() async {
-    // String? accessToken = await ref.read(secureStorageProvider).read(key: ACCESS_TOKEN_KEY);
-    // if (accessToken != null) {
-    //   final user = await ref.read(getMyInfoProvider.future);
-    //   ref.read(appStatusProvider.notifier).setAppStatus(user);
-    //   GoRouter.of(context).go(AppPath.main.toPath);
-    // }
-    //   final user = await ref.read(getMyInfoProvider.future);
     await ref.read(appStatusProvider.notifier).setAppStatus();
     GoRouter.of(context).go(AppPath.main.toPath);
   }

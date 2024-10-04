@@ -24,13 +24,14 @@ class AppStatus extends _$AppStatus {
 
     if (signUpRequest != null) {
       await ref.read(tokenProvider(signUpRequest).future);
+      userModel = await ref.read(getUserModelFromStoreAccessTokenProvider.future);
     } else {
       if (accessToken == null) {
         userModel = null;
+      }else{
+        userModel = await ref.read(getUserModelFromStoreAccessTokenProvider.future);
       }
     }
-    userModel = await ref.read(getUserModelFromStoreAccessTokenProvider.future);
-
     state = AsyncValue.loading();
     state = await AsyncValue.guard(() async => AppStatusModel(loggedInUser: userModel));
   }
